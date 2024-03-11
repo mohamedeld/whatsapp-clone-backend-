@@ -27,8 +27,15 @@ export const register = async (request, response, next) => {
       status: "success",
       message: "added sucessfully",
       data: {
-        user: newUser,
-        token
+        user: {
+	_id:newUser._id,
+	name:newUser.name,
+	email:newUser.email,
+	picture:newUser.picture,
+	status:newUser.status,
+	password:newUser.password,
+	token
+	},
       }
     })
   }
@@ -54,7 +61,15 @@ export const login = catchAsync(async (request, response, next) => {
     status: "success",
     message: "login successully sucessfully",
     data: {
-      user,token
+      user: {
+	_id:newUser._id,
+	name:newUser.name,
+	email:newUser.email,
+	picture:newUser.picture,
+	status:newUser.status,
+	password:newUser.password,
+	token
+	},
     }
   })
 })
@@ -85,8 +100,15 @@ export const refreshToken = async (request, response, next) => {
     status: "success",
     message: "added sucessfully",
     data: {
-      user,
-      token
+      user: {
+	_id:newUser._id,
+	name:newUser.name,
+	email:newUser.email,
+	picture:newUser.picture,
+	status:newUser.status,
+	password:newUser.password,
+	token
+	},
     }
   })
   } catch(err){
@@ -95,35 +117,3 @@ export const refreshToken = async (request, response, next) => {
 }
 
 
-export const protect = catchAsync(async (request,response,next)=>{
-  
-  
-  let token;
-  if(request.headers.authorization && request.headers.authorization.startsWith('Bearer')){
-    token = request.headers.authorization.split(' ')[1];
-  }
-  if (!token) {
-    throw new Error("access denied")
-  }
-  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-  
-  const currentUser = await User.findById(decoded.userId);
-  if(!currentUser){
-    throw new Error(
-      "the user that belong to this token does no longer exist"
-    );
-  }
-  if (currentUser.passwordChangeAt) {
-    const convertDateToTimeStamp = parseInt(currentUser.passwordChangeAt.getTime() / 1000,10);
-    if(convertDateToTimeStamp> decoded.iat){
-      response
-        .status(401)
-        .json({
-          message: "the user change his password please login again",
-        });
-    }
-  }
-  request.user = currentUser;
-  next();
-
-});
