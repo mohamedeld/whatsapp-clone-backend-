@@ -62,12 +62,12 @@ export const login = catchAsync(async (request, response, next) => {
     message: "login successully sucessfully",
     data: {
       user: {
-	_id:newUser._id,
-	name:newUser.name,
-	email:newUser.email,
-	picture:newUser.picture,
-	status:newUser.status,
-	password:newUser.password,
+	_id:user._id,
+	name:user.name,
+	email:user.email,
+	picture:user.picture,
+	status:user.status,
+	password:user.password,
 	token
 	},
     }

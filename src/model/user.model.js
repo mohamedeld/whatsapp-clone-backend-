@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 const userSchema = new Schema({
   name:{
     type:String,
+    trim:true,
     required:[true,"Please enter your name"]
   },
   email:{
@@ -15,6 +16,10 @@ const userSchema = new Schema({
       validator.isEmail,
       "please provide a valid email address"
     ]
+  },
+  role:{
+    type:String,
+    default:"user"
   },
   picture:{
     type:String,

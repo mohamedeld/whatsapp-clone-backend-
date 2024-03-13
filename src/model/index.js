@@ -1,3 +1,4 @@
 import {User} from "./user.model.js";
-
-export {User}
+import Conversation from "./conversation.model.js";
+import Message from "./message.model.js";
+export {User,Conversation,Message}
