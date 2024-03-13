@@ -11,6 +11,10 @@ const conversationSchema= new Schema({
     required:true,
     default:false
   },
+  picture:{
+  	type:String,
+required:true	
+  },
   users:[{
     type:mongoose.Types.ObjectId,
     ref:"User"

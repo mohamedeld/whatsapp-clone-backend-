@@ -24,6 +24,7 @@ export const CreateOpenConversation = catchAsync(async(request,response,next)=>{
     let conversationData = {
       name:receiver.name,
       isGroup:false,
+      picture:receiver.picture,
       users:[senderId,recevierId],
 
     }
@@ -48,7 +49,7 @@ export const getConversations = async(request,response,next)=>{
       status:"success",
       data:{
         conversations,
-        user_id
+ 
       }
     })
   }catch(err){
