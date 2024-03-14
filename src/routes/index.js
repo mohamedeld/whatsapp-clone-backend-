@@ -3,10 +3,12 @@ import authRoutes from "./auth.route.js";
 import conversationRoutes from "./conversation.route.js";
 import messageRoutes from "./message.route.js";
 import questionRoutes from "./question.route.js";
+import userRoutes from "./user.route.js";
 const router= express.Router();
 
 router.use("/auth",authRoutes);
 router.use("/conversation",conversationRoutes);
 router.use("/message",messageRoutes);
 router.use("/question",questionRoutes);
+router.use("/user",userRoutes);
 export default router;

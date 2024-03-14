@@ -16,7 +16,7 @@ export const doesConversationExist = async (senderId, receiverId) => {
     path:"latestMessage.sender",
     select:"name email picture status"
   })
-
+  
   return conversations[0];
 } 
 
@@ -61,7 +61,7 @@ export const getUserConversations = async (user_id) => {
 
 export const updatedLatestMessage = async (convoId,newMessage)=>{
   const updatedConversation = await Conversation.findByIdAndUpdate(convoId,{
-    lastestMessage:newMessage
+    latestMessage:newMessage
   },{new:true});
   if(!updatedConversation){
     throw createHttpError.BadRequest("something went wrong please provider conversation id");

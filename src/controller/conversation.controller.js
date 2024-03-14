@@ -26,8 +26,9 @@ export const CreateOpenConversation = catchAsync(async(request,response,next)=>{
       isGroup:false,
       picture:receiver.picture,
       users:[senderId,recevierId],
-
+      
     }
+    console.log(receiver)
     const newConv = await createConversation(conversationData);
     const populateConv = await populateConversation(newConv._id,"users","-password")
     response.status(200).json({
@@ -49,7 +50,7 @@ export const getConversations = async(request,response,next)=>{
       status:"success",
       data:{
         conversations,
- 
+        
       }
     })
   }catch(err){
