@@ -9,9 +9,11 @@ export const getUser =async (reveciverId)=>{
   return existedUser;
 }
 
-export const searchQueryUser = async(keyword)=>{
+export const searchQueryUser = async(keyword,userId)=>{
   const users = await User.find({
     name:{$regex:keyword,$options:"i"}
+  }).find({
+    _id:{$ne:userId}
   });
   if(!users){
     throw createHttpError.BadRequest("no users found");

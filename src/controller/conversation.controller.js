@@ -15,10 +15,7 @@ export const CreateOpenConversation = catchAsync(async(request,response,next)=>{
   const existedConversation = await doesConversationExist(senderId,recevierId);
   if(existedConversation){
     response.status(200).json({
-      status:"success",
-      data:{
         existedConversation
-      }
      })
   }else{
     let conversationData = {
@@ -32,11 +29,9 @@ export const CreateOpenConversation = catchAsync(async(request,response,next)=>{
     const newConv = await createConversation(conversationData);
     const populateConv = await populateConversation(newConv._id,"users","-password")
     response.status(200).json({
-      status:"success",
-      message:"conversation is created",
-      data:{
+      
         populateConv
-      }
+      
     })
   }
  
