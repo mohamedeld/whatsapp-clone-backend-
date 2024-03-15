@@ -2,9 +2,10 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
-
+import { Server } from "socket.io";
 import mongoose from "mongoose";
 import app from "./app.js";
+import SocketServer from "./SocketServer.js";
 process.on('uncaughtException', (err) => {
   console.log('unhandler exception shutting down');
   console.log(err.name, err.message);
@@ -34,9 +35,20 @@ mongoose.connect(process.env.DB_URL).then(()=>{
   console.error("error with connected with database",err);
 })
 const PORT = process.env.PORT || 8000;
-app.listen(PORT,()=>{
+const server = app.listen(PORT,()=>{
   console.log(`server is running on port ${PORT}`);
 });
+
+const io = new Server(server,{
+  pingTimeout:60000,
+  cors:{
+    origin:process.env.CLIENT_ENDPOINT
+  }
+})
+io.on("connection",(socket)=>{
+  console.log(`socket io is connected successfully`);
+  SocketServer(socket);
+})
 
 // error outside express
 process.on('unhandledRejection', (error) => {

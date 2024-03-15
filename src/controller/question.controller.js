@@ -14,23 +14,11 @@ export const createQuestion = catchAsync(async(request,response,next)=>{
     user:userId
   }
   const newQuestion = await createNewQuestion(questionData);
-  response.status(200).json({
-    status:"success",
-    message:"created successfully",
-    data:{
-      newQuestion
-    }
-  })
+  response.status(200).json(newQuestion)
 })
 export const getQuestions = catchAsync(async(request,response,next)=>{
   const questions = await getAllQuestions();
-  response.status(200).json({
-    status:"success",
-    message:"get all questions successfully",
-    data:{
-      questions
-    }
-  })
+  response.status(200).json(questions)
 })
 export const getQuestion = catchAsync(async(request,response,next)=>{
   const questionId = request.params.id;
@@ -38,13 +26,7 @@ export const getQuestion = catchAsync(async(request,response,next)=>{
     return next(new AppError("can not find question id"));
   }
   const question = await getQuestionById(questionId)
-  response.status(200).json({
-    status:"success",
-    message:"get question successfully",
-    data:{
-      question
-    }
-  })
+  response.status(200).json(question)
 })
 export const updateQuestion = catchAsync(async(request,response,next)=>{
   const questionId = request.params.id;
@@ -61,13 +43,7 @@ export const updateQuestion = catchAsync(async(request,response,next)=>{
     return next(new AppError("can not find question id"));
   }
   const question = await updateQuestionById(questionId,questionData)
-  response.status(200).json({
-    status:"success",
-    message:"update question successfully",
-    data:{
-      question
-    }
-  })
+  response.status(200).json(question)
 })
 export const deleteQuestion = catchAsync(async(request,response,next)=>{
   const questionId = request.params.id;

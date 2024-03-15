@@ -18,12 +18,7 @@ export const sendMessage = catchAsync(async(request,response,next)=>{
   let createMessage = await createNewMessage(messageData);
   let populateMessage = await populatedMessage(createMessage._id);
   await updatedLatestMessage(convoId,createMessage);
-  response.status(200).json({
-    status:"success",
-    data:{
-      populateMessage
-    }
-  })
+  response.status(200).json(populateMessage)
 })
 
 export const getMessage = catchAsync(async(request,response,next)=>{
@@ -32,10 +27,5 @@ export const getMessage = catchAsync(async(request,response,next)=>{
     return next(new AppError("Please add conversation id in headers"));
   }
   const messages = await getConvoMessages(convId);
-  response.status(200).json({
-    status:"success",
-    data:{
-      messages
-    }
-  })
+  response.status(200).json(messages)
 })
