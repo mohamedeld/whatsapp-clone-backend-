@@ -15,7 +15,7 @@ app.use(fileUpload({
   useTempFiles:true
 }));
 app.use(cors({
-  origin:"http://localhost:3000"
+  origin:"https://whatsapp-clone-react.onrender.com"
 }));
 
 app.use("/api/v1",routes);  
