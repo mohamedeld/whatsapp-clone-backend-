@@ -43,7 +43,7 @@ server = app.listen(PORT,()=>{
 const io = new Server(server,{
   pingTimeout:60000,
   cors:{
-    origin:process.env.CLIENT_ENDPOINT,methods: ["GET", "POST"]
+    origin:"https://whatsapp-clone-react.onrender.com"
   }
 })
 io.on("connection",(socket)=>{
