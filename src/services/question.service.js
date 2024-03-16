@@ -11,7 +11,7 @@ export const createNewQuestion = async (questionData)=>{
 }
 
 export const getAllQuestions = async ()=>{
-  const questions = await Question.find({}).populate("user","name");
+  const questions = await Question.find({}).populate("user","name picture");
   if(!questions){
     throw createHttpError.BadRequest("something went wrong");
   }

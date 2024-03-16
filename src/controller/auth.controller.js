@@ -33,6 +33,7 @@ export const register = async (request, response, next) => {
 	email:newUser.email,
 	picture:newUser.picture,
 	status:newUser.status,
+  role:newUser.role,
 	password:newUser.password,
 	token
 	},
@@ -67,6 +68,7 @@ export const login = catchAsync(async (request, response, next) => {
 	email:user.email,
 	picture:user.picture,
 	status:user.status,
+  role:user.role,
 	password:user.password,
 	token
 	},
@@ -106,6 +108,7 @@ export const refreshToken = async (request, response, next) => {
 	email:newUser.email,
 	picture:newUser.picture,
 	status:newUser.status,
+  role:newUser.role,
 	password:newUser.password,
 	token
 	},
