@@ -43,7 +43,7 @@ server = app.listen(PORT,()=>{
 const io = new Server(server,{
   pingTimeout:60000,
   cors:{
-    origin:"https://whatsapp-clone-react.onrender.com"
+    origin:"https://whatsapp-clone-react-three.vercel.app"
   }
 })
 io.on("connection",(socket)=>{

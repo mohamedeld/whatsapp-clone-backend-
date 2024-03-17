@@ -15,7 +15,7 @@ app.use(fileUpload({
   useTempFiles:true
 }));
 app.use(cors({
-  origin:"https://whatsapp-clone-react.onrender.com"
+  origin:"https://whatsapp-clone-react-three.vercel.app"
 }));
 
 app.use("/api/v1",routes);  
