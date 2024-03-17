@@ -39,11 +39,11 @@ let server;
 server = app.listen(PORT,()=>{
   console.log(`server is running on port ${PORT}`);
 });
-
 const io = new Server(server,{
   pingTimeout:60000,
   cors:{
-    origin:"https://whatsapp-clone-react-three.vercel.app"
+    origin:process.env.CLIENT_ENDPOINT,
+    methods:['GET','POST']
   }
 })
 io.on("connection",(socket)=>{
