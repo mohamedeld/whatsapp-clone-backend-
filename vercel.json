@@ -1,11 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": ".js",
-      "use": "@vercel/node"
-    }
-  ],
   "routes": [
     { "src": "/configs/(.)", "dest": "/src/configs/$1" },
     { "src": "/controller/(.)", "dest": "/src/controller/$1" },
