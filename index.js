@@ -34,7 +34,7 @@ mongoose.connect(process.env.DB_URL).then(()=>{
 }).catch(err=>{
   console.error("error with connected with database",err);
 })
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
 let server;
 server = app.listen(PORT,()=>{
   console.log(`server is running on port ${PORT}`);
@@ -42,8 +42,9 @@ server = app.listen(PORT,()=>{
 const io = new Server(server,{
   pingTimeout:60000,
   cors:{
-    origin:process.env.CLIENT_ENDPOINT,
-    methods:['GET','POST']
+    origin:"http://localhost:5173",
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
   }
 })
 io.on("connection",(socket)=>{
