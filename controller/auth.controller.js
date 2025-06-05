@@ -60,7 +60,7 @@ response.cookie("refreshtoken", refToken,{
   path:"/api/v1/auth/refreshtoken",
   maxAge:30*24*60*60*1000 // 30days
 }); 
-response.status(201).json({
+response.status(200).json({
   status: "success",
   message: "login successully sucessfully",
   data: {
